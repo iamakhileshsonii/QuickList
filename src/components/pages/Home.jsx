@@ -3,7 +3,6 @@ import SingleTodo from '../cards/SingleTodo';
 
 const Home = () => {
 
-  const [toDo, setTodo] = useState([]);
   const [todoInput, setTodoInput] = useState('');
 
     // All Todos
