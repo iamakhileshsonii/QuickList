@@ -21,9 +21,9 @@ const Home = () => {
   // Handle form submit
   const handleSubmit = (event)=>{
     event.preventDefault();
-
-    const newTodo = [...toDo, {id: Date.now(), task: todoInput}];
-    setTodo(newTodo)
+    const newTask = {id: Date.now(), task: todoInput}
+    const newTodo = [...toDos, newTask ];
+    setToDos(newTodo)
 
     localStorage.setItem('toDo', JSON.stringify(newTodo))
     setTodoInput('')
@@ -38,7 +38,7 @@ const Home = () => {
   // Handle Delete
   function handleDelete(id){
     const deleteTodo = toDos.filter(
-      (delTodo) => delTodo.id != id
+      (delTodo) => delTodo.id !== id
       )
 
       localStorage.setItem('toDo', JSON.stringify(deleteTodo));
