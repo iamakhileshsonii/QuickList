@@ -5,8 +5,10 @@ const Home = () => {
   const [todoInput, setTodoInput] = useState('');
   const [toDos, setToDos] = useState([]);
   const [updateBtn, setUpdateBtn] = useState(false);
-  const [selectedTodoId, setSelectedTodoId] = useState(null); // New state to keep track of the selected todo ID
+  const [selectedTodoId, setSelectedTodoId] = useState(null);
+  
 
+  // Fetch todos
   useEffect(() => {
     function fetchToDos() {
       const TodoList = JSON.parse(localStorage.getItem('toDo')) || [];
@@ -15,6 +17,7 @@ const Home = () => {
     fetchToDos();
   }, []);
 
+  // Handle Submit
   const handleSubmit = (event) => {
     event.preventDefault();
     if (todoInput !== "") {
@@ -41,16 +44,19 @@ const Home = () => {
     }
   }
 
+  // Add toDo
   function addTodo(value) {
     setTodoInput(value);
   }
 
+  // Delete Todo
   function handleDelete(id) {
     const deleteTodo = toDos.filter(delTodo => delTodo.id !== id);
     localStorage.setItem('toDo', JSON.stringify(deleteTodo));
     setToDos(deleteTodo);
   }
 
+  // Edit Todo
   function handleEdit(id) {
     setUpdateBtn(true);
     setSelectedTodoId(id); // Set the selected todo ID
@@ -59,6 +65,8 @@ const Home = () => {
       setTodoInput(selectedTodo.task);
     }
   }
+
+  
 
   return (
     <div className='min-h-screen bg-gradient-to-r from-black to-red py-5 px-10 md:py-10 md:px-96 block justify-center w-full'>
@@ -80,7 +88,7 @@ const Home = () => {
 
         <div className='my-10'>
           {toDos && toDos.map((todo) => (
-            <SingleTodo toDo={todo} key={todo.id} deleteTodo={() => handleDelete(todo.id)} editTodo={() => handleEdit(todo.id)} />
+            <SingleTodo toDo={todo} key={todo.id} deleteTodo={() => handleDelete(todo.id)} editTodo={() => handleEdit(todo.id)}/>
           ))}
         </div>
       </form>

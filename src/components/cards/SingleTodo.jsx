@@ -1,11 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { useState } from 'react';
 
 const SingleTodo = ({toDo, deleteTodo, editTodo}) => {
+  const [completedTodo, setCompletedTodo] = useState(false);
 
+  const todoStatus = completedTodo ? "line-through decoration-white" : "";
 
   return (
 
-    <div className='flex justify-between py-1 px-2'>
+    <div className={`flex justify-between py-1 px-2 hover:cursor-pointer ${todoStatus}` } onClick={()=>setCompletedTodo(!completedTodo)}>
             <p className='text-white font-thin text-lg'>{toDo.task}</p>
             <div className='flex justify-evenly'>
                 <div className='block'>
