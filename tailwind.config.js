@@ -9,6 +9,7 @@ module.exports = {
       white: "#FFFFFF",
       glass: "#ffffff26",
       transparent: "#ff000000",
+      green: "#02a502",
     },
     extend: {},
   },
